@@ -166,8 +166,8 @@ v1 makes three Claude API calls. All run server-side, return JSON checked agains
 | Feature | When it runs | Model (env var) | Output |
 | --- | --- | --- | --- |
 | Tag an idea | After every capture | `CLAUDE_MODEL_FAST` (Haiku) | pillar, hook, format, effort |
-| Answer to ideas | After a Daily Prompt answer | `CLAUDE_MODEL_FAST` (Haiku) | 1–3 idea cards |
-| Weekly Pick | When the user opens Weekly Pick | `CLAUDE_MODEL_SMART` (Sonnet) | ranked idea IDs + one-line reason each |
+| Answer to ideas | After a Daily Prompt answer | `CLAUDE_MODEL_SMART` (Sonnet) | 1–3 idea cards |
+| Weekly Pick | When the user opens Weekly Pick | `CLAUDE_MODEL_SUPA` (Opus) | ranked idea IDs + one-line reason each |
 
 The Daily Prompt question itself comes from a seeded bank of 60 questions in `src/data/prompts.ts`, rotated so none repeats within 30 days. No AI call is needed to ask it.
 
@@ -336,6 +336,7 @@ SUPABASE_SERVICE_ROLE_KEY=
 ANTHROPIC_API_KEY=
 CLAUDE_MODEL_FAST=claude-haiku-5-5
 CLAUDE_MODEL_SMART=claude-sonnet-5-5
+CLAUDE_MODEL_SUPA=claude-opus-5-5
 VAPID_PUBLIC_KEY=
 VAPID_PRIVATE_KEY=
 ```
