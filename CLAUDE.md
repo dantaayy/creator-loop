@@ -31,4 +31,4 @@ Next.js (App Router) + TypeScript, Tailwind + shadcn/ui, Supabase (Postgres, aut
 - Caps are enforced on the server, not only in the UI.
 - Business math lives in src/lib/calc as pure functions with unit tests.
 - No streaks, no view counts, no guilt copy anywhere in the UI.
-- Secrets only in .env.local. Never log or commit keys.
+- Secrets only in .env Never log or commit keys.
