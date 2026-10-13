@@ -1,3 +1,9 @@
+import { Suspense } from "react";
+import { signOut } from "@/app/(auth)/actions";
+import { Button } from "@/components/ui/button";
+import { createClient } from "@/lib/supabase/server";
+
+// Placeholder home until the Week screen arrives (M2/M6).
 export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
@@ -6,7 +12,30 @@ export default function Home() {
       <p className="mt-4 text-base leading-relaxed text-muted-foreground">
         Capture ideas, plan a week you can sustain, and keep an eye on your energy and runway.
       </p>
-      <p className="mt-10 text-sm text-muted-foreground">Coming together, one piece at a time.</p>
+      <Suspense>
+        <Account />
+      </Suspense>
     </main>
+  );
+}
+
+async function Account() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  return (
+    <div className="mt-10 flex items-center justify-between gap-4 border-t pt-6">
+      <p className="truncate text-sm text-muted-foreground">
+        Signed in as <span className="text-foreground">{user.email}</span>
+      </p>
+      <form action={signOut}>
+        <Button type="submit" variant="outline" size="sm">
+          Sign out
+        </Button>
+      </form>
+    </div>
   );
 }
